@@ -1,12 +1,6 @@
-package pageObject;
+package page.uiPageObject;
 
-import io.cucumber.java.en.Given;
-import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
-import stepdef.configProperties;
 import stepdef.stepdefinition;
 
 public class loginPageObject extends stepdefinition {

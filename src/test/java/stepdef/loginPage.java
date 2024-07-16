@@ -8,7 +8,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 //import pageObject.loginPageObject;
 
-import static pageObject.loginPageObject.*;
+import static page.uiPageObject.loginPageObject.*;
 
 import java.io.IOException;
 
