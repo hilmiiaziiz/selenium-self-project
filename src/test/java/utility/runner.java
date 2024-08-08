@@ -8,10 +8,11 @@ import org.junit.BeforeClass;
 import org.junit.runner.RunWith;
 import stepdef.configProperties;
 
-//@RunWith(Cucumber.class)
+@RunWith(Cucumber.class)
+
 @CucumberOptions(
-        features = {"src/test/java/features"},
-        glue = {"src/test/java/PageObject", "stepdef"}, tags = "",
+        features = {"features"},
+        glue = {"stepdef"}, tags = "@apitesting",
         plugin = {"pretty", "html:target/cucumber-html-report","json:cucumber.json"}
 )
 
