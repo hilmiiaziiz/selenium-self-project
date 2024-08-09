@@ -1,2 +1,5 @@
 Homepage:
   label_web: "//*[@class='login_logo']"
+  uname_form: "//*[@data-test='username']"
+  password_form: "//*[@data-test='password']"
+  button_login: "//*[@data-test='login-button']"

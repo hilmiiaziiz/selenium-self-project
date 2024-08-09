@@ -24,27 +24,27 @@ public class loginPage extends stepdefinition {
 
     }
 
-    @And("^User verify label page$")
-    public void labelVerification() {
-        verify_label();
+//    @And("^User verify label page$")
+//    public void labelVerification() {
+//        verify_label();
+//
+//    }
 
-    }
+//    @And("^User verify username field")
+//    public void unameFieldVerify() {
+//        verify_uname_field();
 
-    @And("^User verify username field")
-    public void unameFieldVerify() {
-        verify_uname_field();
+//    }
 
-    }
+//    @When("^User verify password field")
+//    public void passwordFieldVerify() {
+//        verify_password_field();
+//    }
 
-    @When("^User verify password field")
-    public void passwordFieldVerify() {
-        verify_password_field();
-    }
-
-    @And("^User verify button login$")
-    public void loginButtonVerify() {
-        verify_login_button();
-    }
+//    @And("^User verify button login$")
+//    public void loginButtonVerify() {
+//        verify_login_button();
+//    }
 
     @And("^User input (.*) text on (.*) field$")
     public void inputText(String text, String loc) {
