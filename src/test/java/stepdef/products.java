@@ -8,7 +8,11 @@ import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 import io.restassured.response.ResponseBody;
 import io.restassured.specification.RequestSpecification;
+import org.json.simple.JSONObject;
+
+import static io.restassured.RestAssured.given;
 import static org.junit.Assert.*;
+
 
 public class products {
 
@@ -17,19 +21,22 @@ public class products {
     public int ResponseCode;
 
     public ResponseBody body;
+    public JSONObject params;
 
-
-    @Given("Hit the api url to get the value")
-    public void getTheProducts() {
-
-        RestAssured.baseURI = "https://fakestoreapi.com/";
-    }
-
-    @When("^Go to endpoint (.*) when request the API$")
+    @When("^GET The (.*) Request$")
     public void hitTheUrl(String endpoint) {
 
         httpRequest = RestAssured.given();
         response = httpRequest.get(endpoint);
+//        System.out.println(response.asString());
+    }
+
+    @Then("^verify value of the (.*) is equals with(.*)$")
+    public void verifyTheParameterData(String path, String cat) {
+
+        JsonPath jsnpath = response.jsonPath();
+        String exptd = jsnpath.getJsonObject(path).toString();
+        assertEquals(cat, exptd);
     }
 
     @Then("Verify the response code is (.*)$")
@@ -39,12 +46,29 @@ public class products {
         assertEquals(ResponseCode, code);
     }
 
-    @Then("^verify value of the (.*) is equals with(.*)$")
-    public void verifyTheParameterData(String path, String cat) {
+    @Given("^Pointing The URL (.*)$")
+    public void hitTheApiWithPostCondition(String url) {
 
-        body = response.getBody();
-        JsonPath jsnpath = response.jsonPath();
-        String exptd = jsnpath.getJsonObject(path).toString();
-        assertEquals(cat, exptd);
+        RestAssured.baseURI = url;
     }
+
+    @Given("^Create Product data Payload with title (.*)")
+    public void hitTheApiWithPostConditionToCreateTheValue(String data) {
+
+        httpRequest = given();
+        params = new JSONObject();
+        params.put("title", data);
+        params.put("price", 20);
+        params.put("description", "testing description");
+        params.put("image", "google.com");
+        params.put("category", "clothes");
+    }
+    @Given("^POST (.*) The Request$")
+    public void postTheRequest(String endpoint){
+        httpRequest.body(params.toJSONString());
+        response = httpRequest.post(endpoint);
+        body = response.getBody();
+        System.out.println(response.asString());
+    }
+
 }
